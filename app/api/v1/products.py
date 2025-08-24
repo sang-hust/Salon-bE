@@ -1,12 +1,78 @@
-# app/api/v1/products.py
 from fastapi import APIRouter
 router = APIRouter()
 
 @router.get("")
 def list_products():
     return [
-        { "id": "p1", "name": "Shampoo Repair", "price": 199000 },
-        { "id": "p2", "name": "Hair Oil Glow", "price": 249000 },
-        { "id": "p3", "name": "Nail Care Kit", "price": 99000 },
-    ]
+        # --- Services: Manicure/Pedicure ---
+        {"id": "svc-classic-mani", "name": "Classic Manicure", "price": 120000,
+         "type": "service", "category": "Manicure", "duration_min": 30,
+         "aliases": ["basic manicure", "cắt da sơn thường"]},
+        {"id": "svc-classic-pedi", "name": "Classic Pedicure", "price": 180000,
+         "type": "service", "category": "Pedicure", "duration_min": 40,
+         "aliases": ["basic pedicure", "cắt da chân sơn thường"]},
+        {"id": "svc-gel-mani", "name": "Gel Manicure", "price": 280000,
+         "type": "service", "category": "Gel", "duration_min": 50,
+         "aliases": ["shellac", "sơn gel tay"]},
+        {"id": "svc-gel-pedi", "name": "Gel Pedicure", "price": 380000,
+         "type": "service", "category": "Gel", "duration_min": 60,
+         "aliases": ["gel toes", "sơn gel chân"]},
+        {"id": "svc-acrylic-full", "name": "Acrylic Full Set", "price": 450000,
+         "type": "service", "category": "Extensions", "duration_min": 90,
+         "aliases": ["nối móng bột full set"]},
+        {"id": "svc-acrylic-refill", "name": "Acrylic Refill", "price": 300000,
+         "type": "service", "category": "Extensions", "duration_min": 70,
+         "aliases": ["đắp bột dặm", "fill"]},
+        {"id": "svc-gelx", "name": "Gel-X Soft Gel Extensions", "price": 650000,
+         "type": "service", "category": "Extensions", "duration_min": 95,
+         "aliases": ["aprés", "nối móng gel"]},
+        {"id": "svc-builder-overlay", "name": "Builder Gel Overlay", "price": 400000,
+         "type": "service", "category": "Gel", "duration_min": 70,
+         "aliases": ["hard gel overlay", "gel cứng phủ móng"]},
 
+        # --- Add-ons ---
+        {"id": "add-french", "name": "French Tips (add-on)", "price": 60000,
+         "type": "service", "category": "Add-on", "duration_min": 10,
+         "aliases": ["french", "đầu móng trắng"], "is_addon": True},
+        {"id": "add-simple-art", "name": "Nail Art – Simple (2–4 nails)", "price": 50000,
+         "type": "service", "category": "Add-on", "duration_min": 15,
+         "aliases": ["nail art đơn giản"], "is_addon": True},
+        {"id": "add-full-art", "name": "Nail Art – Full Set", "price": 150000,
+         "type": "service", "category": "Add-on", "duration_min": 35,
+         "aliases": ["nail art phức tạp"], "is_addon": True},
+        {"id": "add-paraffin", "name": "Paraffin Treatment", "price": 90000,
+         "type": "service", "category": "Spa", "duration_min": 15,
+         "aliases": ["wax paraffin", "dưỡng ấm"]},
+        {"id": "add-callus", "name": "Callus Treatment", "price": 70000,
+         "type": "service", "category": "Spa", "duration_min": 15,
+         "aliases": ["mài gót", "chăm sóc gót"]},
+
+        # --- Removals / Quick fixes ---
+        {"id": "svc-gel-removal", "name": "Gel Removal", "price": 50000,
+         "type": "service", "category": "Removal", "duration_min": 15,
+         "aliases": ["tháo gel"]},
+        {"id": "svc-acrylic-removal", "name": "Acrylic Removal", "price": 80000,
+         "type": "service", "category": "Removal", "duration_min": 25,
+         "aliases": ["tháo bột"]},
+        {"id": "svc-polish-change-hands", "name": "Polish Change – Hands", "price": 60000,
+         "type": "service", "category": "Polish", "duration_min": 15,
+         "aliases": ["đổi sơn tay"]},
+        {"id": "svc-polish-change-toes", "name": "Polish Change – Toes", "price": 70000,
+         "type": "service", "category": "Polish", "duration_min": 15,
+         "aliases": ["đổi sơn chân"]},
+        {"id": "svc-kids-mani", "name": "Kids Manicure", "price": 80000,
+         "type": "service", "category": "Kids", "duration_min": 20,
+         "aliases": ["manicure trẻ em"]},
+
+        # --- Retail products for upsell ---
+        {"id": "ret-cuticle-oil", "name": "Cuticle Oil (15ml)", "price": 99000,
+         "type": "retail", "category": "Retail", "aliases": ["dầu dưỡng kẽ móng"]},
+        {"id": "ret-hand-cream", "name": "Hand Cream – Shea", "price": 129000,
+         "type": "retail", "category": "Retail", "aliases": ["kem dưỡng tay"]},
+        {"id": "ret-base-coat", "name": "Nail Strengthener Base Coat", "price": 149000,
+         "type": "retail", "category": "Retail", "aliases": ["sơn lót dưỡng"]},
+        {"id": "ret-top-coat", "name": "Quick-Dry Top Coat", "price": 149000,
+         "type": "retail", "category": "Retail", "aliases": ["sơn bóng nhanh khô"]},
+        {"id": "ret-remover", "name": "Acetone-Free Polish Remover", "price": 79000,
+         "type": "retail", "category": "Retail", "aliases": ["nước tẩy sơn không acetone"]},
+    ]
