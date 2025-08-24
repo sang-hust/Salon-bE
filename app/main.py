@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
 from app.database.session import engine
 from app.database.base import Base
+from app.api.v1 import appointments as appointments_router
 
 # Import models so that metadata creates tables
 from app.models import user  # noqa
@@ -41,3 +42,4 @@ app.include_router(auth_router.router, prefix="/api/v1/auth", tags=["Auth"])
 app.include_router(staff_router.router, prefix="/api/v1/staff", tags=["Staff"])
 app.include_router(slots_router.router, prefix="/api/v1/slots", tags=["Slots"])
 app.include_router(products_router.router, prefix="/api/v1/products", tags=["Products"])
+app.include_router(appointments_router.router, prefix="/api/v1", tags=["Appointments"])
